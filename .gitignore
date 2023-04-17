@@ -36,6 +36,5 @@ KaKaoMulti/KaKaoMulti/*.vcxproj.user
 *.lib
 
 # Executables
-*.exe
 *.out
 *.app
