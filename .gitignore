@@ -1,3 +1,12 @@
+KaKaoMulti/.vs/*
+KaKaoMulti/Debug/*
+KaKaoMulti/Release/*
+KaKaoMulti/x64/*
+KaKaoMulti/KaKaoMulti/Debug/*
+KaKaoMulti/KaKaoMulti/Release/*
+KaKaoMulti/KaKaoMulti/x64/*
+KaKaoMulti/KaKaoMulti/*.vcxproj.user
+
 # Prerequisites
 *.d
 
