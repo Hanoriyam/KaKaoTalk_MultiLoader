@@ -16,7 +16,7 @@
 #pragma commnet(lib, "user32")
 
 #define EXE_NAME L"KaKaoTalk.exe"
-#define SEMAPHORE_STRING L"{97C4DDD9-D36D-48b5-BB47-2C8299BA7D1E}"
+#define SEMAPHORE_STRING L"97C4DDD9"
 
 #define X64_PATH L"C:\\Program Files (x86)\\Kakao\\KakaoTalk\\KaKaoTalk.exe"
 #define X86_PATH L"C:\\Program Files\\Kakao\\KakaoTalk\\KaKaoTalk.exe"

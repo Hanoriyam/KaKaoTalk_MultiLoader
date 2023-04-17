@@ -12,10 +12,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR lpszCmdL
 		if (!hProcess)
 			continue;
 
-		WCHAR pwTargetName[1024] = { 0, };
 		DWORD dwSessionId = 1;
 		ProcessIdToSessionId(pid, &dwSessionId);
-		swprintf_s(pwTargetName, L"\\Sessions\\%u\\BaseNamedObjects\\%s", dwSessionId, SEMAPHORE_STRING);
 
 		DWORD dwSize = 0;
 		NTSTATUS status = STATUS_INFO_LENGTH_MISMATCH;
@@ -48,10 +46,10 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR lpszCmdL
 			if (name->Buffer == nullptr || type->Buffer == nullptr)
 				continue;
 
-			if (_wcsicmp(name->Buffer, pwTargetName) != 0)
+			if (_wcsicmp(type->Buffer, L"Semaphore") != 0)
 				continue;
 
-			if (_wcsicmp(type->Buffer, L"Semaphore") != 0)
+			if (wcsstr(name->Buffer, SEMAPHORE_STRING) == NULL)
 				continue;
 
 			if (!DuplicateHandle(hProcess, info->Handles[i].HandleValue, GetCurrentProcess(), &hTarget, 0, FALSE, DUPLICATE_CLOSE_SOURCE))
