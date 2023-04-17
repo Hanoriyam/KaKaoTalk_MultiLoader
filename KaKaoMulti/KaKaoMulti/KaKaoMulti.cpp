@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 
 std::vector<DWORD> FindProcesses(const WCHAR* pwFileName);
-BOOL IsWow64();
+BOOL IsX64();
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR lpszCmdLine, int nCmdShow)
 {
@@ -62,7 +62,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR lpszCmdL
 	STARTUPINFO si = { 0, };
 	PROCESS_INFORMATION pi = { 0, };
 
-	if (!CreateProcess(IsWow64() ? X64_PATH : X86_PATH, NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi))
+	if (!CreateProcess(IsX64() ? X64_PATH : X86_PATH, NULL, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi))
 	{
 		MessageBoxTimeoutW(NULL, L"Load fail.", MESSAGE_TITLE, MB_OK | MB_ICONINFORMATION, 0, 4000);
 		return 0;
@@ -101,9 +101,9 @@ std::vector<DWORD> FindProcesses(const WCHAR* pwFileName)
 	return pids;
 }
 
-BOOL IsWow64()
+BOOL IsX64()
 {
-	BOOL bIsWow64 = FALSE;
-	IsWow64Process(GetCurrentProcess(), &bIsWow64);
-	return bIsWow64;
+	SYSTEM_INFO si = { 0, };
+	GetNativeSystemInfo(&si);
+	return si.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64;
 }
