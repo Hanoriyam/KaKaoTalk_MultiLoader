@@ -12,9 +12,6 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR lpszCmdL
 		if (!hProcess)
 			continue;
 
-		DWORD dwSessionId = 1;
-		ProcessIdToSessionId(pid, &dwSessionId);
-
 		DWORD dwSize = 0;
 		NTSTATUS status = STATUS_INFO_LENGTH_MISMATCH;
 		std::unique_ptr<BYTE[]> handleInfoBuffer;
